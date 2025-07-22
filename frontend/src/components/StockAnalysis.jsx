@@ -171,19 +171,19 @@ const StockAnalysis = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
         <div className="flex items-center mb-4">
-          <Activity className="h-8 w-8 text-green-600 mr-3" />
+          <Activity className="h-8 w-8 text-green-400 mr-3" />
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Stock Analysis</h1>
-            <p className="text-gray-600">Comprehensive technical analysis with indicators and price trends</p>
+            <h1 className="text-2xl font-bold text-white">Stock Analysis</h1>
+            <p className="text-gray-300">Comprehensive technical analysis with indicators and price trends</p>
           </div>
         </div>
 
         {/* Input Form */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Stock Symbol
             </label>
             <input
@@ -192,18 +192,18 @@ const StockAnalysis = () => {
               onChange={(e) => setSymbol(e.target.value.toUpperCase())}
               onKeyPress={(e) => e.key === 'Enter' && analyzeStock()}
               placeholder="Enter stock symbol (e.g., AAPL)"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 placeholder-gray-400"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Time Period
             </label>
             <select
               value={period}
               onChange={(e) => setPeriod(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             >
               {periods.map((p) => (
                 <option key={p.value} value={p.value}>{p.label}</option>
@@ -240,7 +240,7 @@ const StockAnalysis = () => {
               <button
                 key={stock.symbol}
                 onClick={() => setSymbol(stock.symbol)}
-                className="text-sm px-3 py-1 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors"
+                className="text-sm px-3 py-1 bg-slate-700 text-gray-300 rounded-full hover:bg-slate-600 transition-colors border border-slate-600"
               >
                 {stock.symbol}
               </button>
@@ -250,9 +250,9 @@ const StockAnalysis = () => {
 
         {/* Error Message */}
         {error && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md flex items-center">
-            <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
-            <span className="text-red-700">{error}</span>
+          <div className="mt-4 p-3 bg-red-900/50 border border-red-700 rounded-md flex items-center">
+            <AlertCircle className="h-5 w-5 text-red-400 mr-2" />
+            <span className="text-red-300">{error}</span>
           </div>
         )}
       </div>
@@ -262,60 +262,60 @@ const StockAnalysis = () => {
         <div className="space-y-6">
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
-                <DollarSign className="h-8 w-8 text-blue-600" />
+                <DollarSign className="h-8 w-8 text-blue-400" />
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Current Price</p>
-                  <p className="text-xl font-semibold text-gray-900">
+                  <p className="text-sm font-medium text-gray-300">Current Price</p>
+                  <p className="text-xl font-semibold text-white">
                     ${results.current_price.toFixed(2)}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
                 {priceChange.change >= 0 ? (
-                  <TrendingUp className="h-8 w-8 text-green-600" />
+                  <TrendingUp className="h-8 w-8 text-green-400" />
                 ) : (
-                  <TrendingDown className="h-8 w-8 text-red-600" />
+                  <TrendingDown className="h-8 w-8 text-red-400" />
                 )}
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Price Change</p>
-                  <p className={`text-xl font-semibold ${priceChange.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <p className="text-sm font-medium text-gray-300">Price Change</p>
+                  <p className={`text-xl font-semibold ${priceChange.change >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                     {priceChange.change >= 0 ? '+' : ''}${priceChange.change.toFixed(2)}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
-                <BarChart3 className="h-8 w-8 text-purple-600" />
+                <BarChart3 className="h-8 w-8 text-purple-400" />
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Change %</p>
-                  <p className={`text-xl font-semibold ${priceChange.percentage >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <p className="text-sm font-medium text-gray-300">Change %</p>
+                  <p className={`text-xl font-semibold ${priceChange.percentage >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                     {priceChange.percentage >= 0 ? '+' : ''}{priceChange.percentage.toFixed(2)}%
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
-                <Activity className="h-8 w-8 text-orange-600" />
+                <Activity className="h-8 w-8 text-orange-400" />
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Symbol</p>
-                  <p className="text-xl font-semibold text-gray-900">{results.symbol}</p>
+                  <p className="text-sm font-medium text-gray-300">Symbol</p>
+                  <p className="text-xl font-semibold text-white">{results.symbol}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Price Chart */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Chart</h3>
+          <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
+            <h3 className="text-lg font-semibold text-white mb-4">Price Chart</h3>
             <ResponsiveContainer width="100%" height={400}>
               <AreaChart data={formatPriceData()}>
                 <defs>
@@ -362,13 +362,13 @@ const StockAnalysis = () => {
 
           {/* Summary Information */}
           {results.summary && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Analysis Summary</h3>
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
+              <h3 className="text-lg font-semibold text-white mb-4">Analysis Summary</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {Object.entries(results.summary).map(([key, value]) => (
-                  <div key={key} className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-gray-600 capitalize">{key.replace(/_/g, ' ')}</span>
-                    <span className="font-medium text-gray-900">
+                  <div key={key} className="flex justify-between items-center py-2 border-b border-slate-600">
+                    <span className="text-gray-300 capitalize">{key.replace(/_/g, ' ')}</span>
+                    <span className="font-medium text-white">
                       {typeof value === 'number' ? value.toFixed(2) : value}
                     </span>
                   </div>

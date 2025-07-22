@@ -68,7 +68,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-slate-900">
       {/* Mobile sidebar overlay - click outside to close */}
       {sidebarOpen && (
         <div
@@ -90,23 +90,23 @@ const Dashboard = () => {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top navigation */}
-        <header className="bg-white shadow-sm border-b border-gray-200">
-          <div className="flex items-center justify-between px-4 py-4">
+        <header className="bg-slate-800 shadow-sm border-b border-slate-700">
+          <div className="flex items-center justify-between px-3 sm:px-4 lg:px-5 xl:px-6 2xl:px-8 py-4">
             <div className="flex items-center">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="lg:hidden p-2 rounded-md text-gray-300 hover:text-white hover:bg-slate-700"
               >
                 <Menu className="h-6 w-6" />
               </button>
               <div className="flex items-center ml-4 lg:ml-0">
-                <BarChart3 className="h-8 w-8 text-blue-600" />
-                <h1 className="ml-2 text-2xl font-bold text-gray-900">Stocklyzer</h1>
+                <BarChart3 className="h-8 w-8 text-blue-400" />
+                <h1 className="ml-2 text-2xl font-bold text-white">Stocklyzer</h1>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <div className="hidden md:block">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-300">
                   Real-time Stock Analysis & Prediction
                 </p>
               </div>
@@ -115,8 +115,8 @@ const Dashboard = () => {
         </header>
 
         {/* Main content area */}
-        <main className="flex-1 overflow-y-auto bg-gray-50">
-          <div className="p-4 lg:p-6">
+        <main className="flex-1 overflow-y-auto bg-slate-900">
+          <div className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-8 max-w-none 2xl:max-w-screen-2xl 2xl:mx-auto">
             {renderContent()}
           </div>
         </main>

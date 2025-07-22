@@ -82,12 +82,12 @@ const CAPMCalculator = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
         <div className="flex items-center mb-4">
-          <Calculator className="h-8 w-8 text-blue-600 mr-3" />
+          <Calculator className="h-8 w-8 text-blue-400 mr-3" />
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">CAPM Calculator</h1>
-            <p className="text-gray-600">Calculate Beta and Expected Returns using Capital Asset Pricing Model</p>
+            <h1 className="text-2xl font-bold text-white">CAPM Calculator</h1>
+            <p className="text-gray-300">Calculate Beta and Expected Returns using Capital Asset Pricing Model</p>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ const CAPMCalculator = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Stock Selection */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Stock Symbols
             </label>
             <div className="flex space-x-2 mb-3">
@@ -105,7 +105,7 @@ const CAPMCalculator = () => {
                 onChange={(e) => setNewStock(e.target.value.toUpperCase())}
                 onKeyPress={(e) => e.key === 'Enter' && addStock()}
                 placeholder="Enter stock symbol (e.g., AAPL)"
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 px-3 py-2 bg-slate-700 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
               />
               <button
                 onClick={addStock}
@@ -120,13 +120,13 @@ const CAPMCalculator = () => {
               {stocks.map((stock) => (
                 <span
                   key={stock}
-                  className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800"
+                  className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-900/50 text-blue-300 border border-blue-700"
                 >
                   {stock}
                   {stocks.length > 1 && (
                     <button
                       onClick={() => removeStock(stock)}
-                      className="ml-2 text-blue-600 hover:text-blue-800"
+                      className="ml-2 text-blue-300 hover:text-blue-200"
                     >
                       <X className="h-3 w-3" />
                     </button>
@@ -137,7 +137,7 @@ const CAPMCalculator = () => {
 
             {/* Popular Stocks */}
             <div>
-              <p className="text-xs text-gray-500 mb-2">Popular stocks:</p>
+              <p className="text-xs text-gray-400 mb-2">Popular stocks:</p>
               <div className="flex flex-wrap gap-1">
                 {popularStocks.slice(0, 6).map((stock) => (
                   <button
@@ -147,7 +147,7 @@ const CAPMCalculator = () => {
                         setStocks([...stocks, stock.symbol])
                       }
                     }}
-                    className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
+                    className="text-xs px-2 py-1 bg-slate-700 text-gray-300 rounded hover:bg-slate-600 transition-colors border border-slate-600"
                     disabled={stocks.includes(stock.symbol)}
                   >
                     {stock.symbol}
@@ -159,13 +159,13 @@ const CAPMCalculator = () => {
 
           {/* Time Period */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Analysis Period (Years)
             </label>
             <select
               value={years}
               onChange={(e) => setYears(parseInt(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               <option value={1}>1 Year</option>
               <option value={2}>2 Years</option>
@@ -196,9 +196,9 @@ const CAPMCalculator = () => {
 
         {/* Error Message */}
         {error && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md flex items-center">
-            <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
-            <span className="text-red-700">{error}</span>
+          <div className="mt-4 p-3 bg-red-900/50 border border-red-700 rounded-md flex items-center">
+            <AlertCircle className="h-5 w-5 text-red-400 mr-2" />
+            <span className="text-red-300">{error}</span>
           </div>
         )}
       </div>
@@ -208,37 +208,37 @@ const CAPMCalculator = () => {
         <div className="space-y-6">
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
-                <TrendingUp className="h-8 w-8 text-green-600" />
+                <TrendingUp className="h-8 w-8 text-green-400" />
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Market Return</p>
-                  <p className="text-xl font-semibold text-gray-900">
+                  <p className="text-sm font-medium text-gray-300">Market Return</p>
+                  <p className="text-xl font-semibold text-white">
                     {(results.market_return * 100).toFixed(2)}%
                   </p>
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
-                <Calculator className="h-8 w-8 text-blue-600" />
+                <Calculator className="h-8 w-8 text-blue-400" />
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Risk-Free Rate</p>
-                  <p className="text-xl font-semibold text-gray-900">
+                  <p className="text-sm font-medium text-gray-300">Risk-Free Rate</p>
+                  <p className="text-xl font-semibold text-white">
                     {(results.risk_free_rate * 100).toFixed(2)}%
                   </p>
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
                 <div className="h-8 w-8 bg-purple-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-sm">β</span>
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Avg Beta</p>
-                  <p className="text-xl font-semibold text-gray-900">
-                    {results.beta_results.length > 0 
+                  <p className="text-sm font-medium text-gray-300">Avg Beta</p>
+                  <p className="text-xl font-semibold text-white">
+                    {results.beta_results.length > 0
                       ? (results.beta_results.reduce((sum, item) => sum + item.beta, 0) / results.beta_results.length).toFixed(3)
                       : 'N/A'
                     }
@@ -246,15 +246,15 @@ const CAPMCalculator = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
                 <div className="h-8 w-8 bg-orange-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-sm">α</span>
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Avg Alpha</p>
-                  <p className="text-xl font-semibold text-gray-900">
-                    {results.beta_results.length > 0 
+                  <p className="text-sm font-medium text-gray-300">Avg Alpha</p>
+                  <p className="text-xl font-semibold text-white">
+                    {results.beta_results.length > 0
                       ? (results.beta_results.reduce((sum, item) => sum + item.alpha, 0) / results.beta_results.length).toFixed(3)
                       : 'N/A'
                     }
@@ -265,33 +265,33 @@ const CAPMCalculator = () => {
           </div>
 
           {/* Beta Results Table */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Beta Analysis Results</h3>
+          <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
+            <h3 className="text-lg font-semibold text-white mb-4">Beta Analysis Results</h3>
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-slate-600">
+                <thead className="bg-slate-700">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Beta (β)</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Alpha (α)</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expected Return</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Risk Level</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Stock</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Beta (β)</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Alpha (α)</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Expected Return</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Risk Level</th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-slate-800 divide-y divide-slate-600">
                   {results.capm_results.map((result, index) => {
                     const beta = result.beta
                     const riskLevel = beta > 1.2 ? 'High' : beta > 0.8 ? 'Medium' : 'Low'
-                    const riskColor = beta > 1.2 ? 'text-red-600' : beta > 0.8 ? 'text-yellow-600' : 'text-green-600'
+                    const riskColor = beta > 1.2 ? 'text-red-400' : beta > 0.8 ? 'text-yellow-400' : 'text-green-400'
                     
                     return (
                       <tr key={result.stock}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{result.stock}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{beta.toFixed(3)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{result.stock}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{beta.toFixed(3)}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                           {results.beta_results[index]?.alpha.toFixed(3)}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                           {(result.expected_return * 100).toFixed(2)}%
                         </td>
                         <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${riskColor}`}>
@@ -309,8 +309,8 @@ const CAPMCalculator = () => {
           {formatChartData().length > 0 && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Normalized Price Chart */}
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Normalized Price Movement</h3>
+              <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
+                <h3 className="text-lg font-semibold text-white mb-4">Normalized Price Movement</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={formatChartData()}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -339,8 +339,8 @@ const CAPMCalculator = () => {
               </div>
 
               {/* Beta Comparison Chart */}
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Beta Comparison</h3>
+              <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
+                <h3 className="text-lg font-semibold text-white mb-4">Beta Comparison</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={formatBetaData()}>
                     <CartesianGrid strokeDasharray="3 3" />

@@ -97,19 +97,19 @@ const StockPrediction = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
         <div className="flex items-center mb-4">
-          <TrendingUp className="h-8 w-8 text-purple-600 mr-3" />
+          <TrendingUp className="h-8 w-8 text-purple-400 mr-3" />
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Stock Prediction</h1>
-            <p className="text-gray-600">Predict future stock prices using ARIMA time series models</p>
+            <h1 className="text-2xl font-bold text-white">Stock Prediction</h1>
+            <p className="text-gray-300">Predict future stock prices using ARIMA time series models</p>
           </div>
         </div>
 
         {/* Input Form */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Stock Symbol
             </label>
             <input
@@ -118,18 +118,18 @@ const StockPrediction = () => {
               onChange={(e) => setSymbol(e.target.value.toUpperCase())}
               onKeyPress={(e) => e.key === 'Enter' && predictStock()}
               placeholder="Enter stock symbol (e.g., AAPL)"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder-gray-400"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Prediction Period
             </label>
             <select
               value={days}
               onChange={(e) => setDays(parseInt(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             >
               {dayOptions.map((option) => (
                 <option key={option.value} value={option.value}>{option.label}</option>
@@ -185,9 +185,9 @@ const StockPrediction = () => {
 
         {/* Error Message */}
         {error && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md flex items-center">
-            <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
-            <span className="text-red-700">{error}</span>
+          <div className="mt-4 p-3 bg-red-900/50 border border-red-700 rounded-md flex items-center">
+            <AlertCircle className="h-5 w-5 text-red-400 mr-2" />
+            <span className="text-red-300">{error}</span>
           </div>
         )}
       </div>
@@ -197,54 +197,54 @@ const StockPrediction = () => {
         <div className="space-y-6">
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
-                <Target className="h-8 w-8 text-blue-600" />
+                <Target className="h-8 w-8 text-blue-400" />
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Current Price</p>
-                  <p className="text-xl font-semibold text-gray-900">
+                  <p className="text-sm font-medium text-gray-300">Current Price</p>
+                  <p className="text-xl font-semibold text-white">
                     ${stats?.currentPrice.toFixed(2)}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
-                <Calendar className="h-8 w-8 text-green-600" />
+                <Calendar className="h-8 w-8 text-green-400" />
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Predicted Price</p>
-                  <p className="text-xl font-semibold text-gray-900">
+                  <p className="text-sm font-medium text-gray-300">Predicted Price</p>
+                  <p className="text-xl font-semibold text-white">
                     ${stats?.lastPrice.toFixed(2)}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
                 {stats?.predictedChange >= 0 ? (
-                  <TrendingUp className="h-8 w-8 text-green-600" />
+                  <TrendingUp className="h-8 w-8 text-green-400" />
                 ) : (
-                  <TrendingUp className="h-8 w-8 text-red-600 transform rotate-180" />
+                  <TrendingUp className="h-8 w-8 text-red-400 transform rotate-180" />
                 )}
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Expected Change</p>
-                  <p className={`text-xl font-semibold ${stats?.predictedChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <p className="text-sm font-medium text-gray-300">Expected Change</p>
+                  <p className={`text-xl font-semibold ${stats?.predictedChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                     {stats?.predictedChange >= 0 ? '+' : ''}${stats?.predictedChange.toFixed(2)}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-4">
               <div className="flex items-center">
                 <div className="h-8 w-8 bg-purple-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-sm">%</span>
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-600">Expected Change %</p>
-                  <p className={`text-xl font-semibold ${stats?.predictedChangePercent >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <p className="text-sm font-medium text-gray-300">Expected Change %</p>
+                  <p className={`text-xl font-semibold ${stats?.predictedChangePercent >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                     {stats?.predictedChangePercent >= 0 ? '+' : ''}{stats?.predictedChangePercent.toFixed(2)}%
                   </p>
                 </div>
@@ -253,8 +253,8 @@ const StockPrediction = () => {
           </div>
 
           {/* Prediction Chart */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Prediction Chart</h3>
+          <div className="bg-slate-800 rounded-lg shadow-lg border border-slate-700 p-6">
+            <h3 className="text-lg font-semibold text-white mb-4">Price Prediction Chart</h3>
             <ResponsiveContainer width="100%" height={500}>
               <LineChart data={formatChartData()}>
                 <CartesianGrid strokeDasharray="3 3" />
